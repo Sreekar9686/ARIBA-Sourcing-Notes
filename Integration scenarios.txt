@@ -1,0 +1,174 @@
+Integration scenarios
+
+Master data integration
+
+ERP  --->   ARIBA
+Suppose you have to integrate user role to Ariba. They are lot of roles in ERP. That is not mandatory to bring all users to ARIBA. In ARIBA you can allow procurement department to perform action. Do we need finance team in Ariba? No. FROM Each department you can add 1 member to act as procurement.
+
+ARIBA --->  ERP not possible
+
+Transaction Data integration
+
+Upstream only
+
+
+RFP(ERP)--Sourcing(ARIBA)--Contract(ERP)
+
+We create RFP in ERP, that will come as RFQ. we create sourcing request in ARIBA. invite Suppliers & they give quote. Award the supplier. after this will create contract In ERP.
+If we are creating contract in ERP, What is the need that organizations opt for contracts in ARIBA. 
+Scenario 2:
+
+Sourcing in ARIBA, CONTRACTING IN ARIBA. Now you will replicate Contract to ERP. It will act as READ ONLY will become as external contract. Internal contracts means which are created in ERP those can be edited.
+Now we want to create PO for this contract. You can't because it's an read-only. You can make this contract as editable and you can create PO based using BADI logic.
+Contract tracking can't be done because this is in upstream. Contract compliance will be present when they opt for both upstream & downstream as suite.
+We can change contract using BADI. Status update to ARIBA cant be done because source & destination system are different and this is possible only if they opt for upstream & downstream.
+
+Downstream only
+
+Sourcing (ERP)  --Contracts(ERP) . now CLIENT Don't HAVE Upstream how they create PR, without moving contract to downstream. It will be moved as contract line items as CIF files to downstream & consume the contract.
+
+PR>PO>GR>Invoice>Payment.
+You will tell SAP team to create an another field in CIF field as maximum spend. This field should be given by supplier at all line items.
+It's possible with move contract line items in cif file and add as catalog items in this downstream. You can't track contract consumption because you dont have contract compliance.
+
+In-Direct Procurement:
+
+PR(AB)--PO(AB,R-AN,R-ERP)---GR(AB,R-ERP)--Invoice(AB,R-AN,R-ERP),IR(ERP,R-AB)--Payment(ERP,R-AN,R-AB)
+
+PR is created in Ariba buyer, PO is created in ariba buyer and replicated to ERP &  ariba network. GR will be done in ariba buyer once it is done automatically invoice gets created in Ariba buyer. Invoice, supplier should see based on that automatic invoice will be done it is always shown to supplier in display mode only.
+
+Direct Procurement:
+
+MRP(ERP)--PR(ERP)--PO(ERP, R-AN)--PO Confirmation(AN,R-ERP)--ASN(AN,R-ERP-ID)--GR(ERP, against ID, R-AN),Invoice(AN,R-ERP),IR(ERP,R-AN),Payment(ERP,R-AN)
+
+Can we create MRP in Ariba? No. MRP is all about Production & planning. ARIBA is procurement solution. We can't do production planning related activities here.
+Can we move PO created in ERP to Ariba? No. In direct procurement there is concept called Material number created in ERP. We don't have this field in ariba. While moving PO created in ERP to Ariba it fails. If you create custom field for this in ariba as an enhancement request, you have to create for all other fields as well because GR,Invoice,IR,Payment created against PO. CIG interface also if you want MAP this field to move from ERP to ARIBA. All these are enhancement request which cost huge money. Even you have done all these mappings every 2 years Ariba will do patch updates at that time standard code changes & your custom changes are also gone. Again you have to do mappings.
+Supplier should see PO confirm the PO in Ariba network.
+What is Inbound delivery? Against this only GR will happen. Status update to AN.
+Invoice will happen in Ariba network. IR will be done in ERP,match against PO & GR. Payment also in ERP,status update to AN.
+
+Another scenario.
+
+Manually PR is created--PR(ERP)--PO(ERP, R-AN)--PO Confirmation(AN,R-ERP)--ASN(AN,R-ERP-ID)--GR(ERP, against ID, R-AN),Invoice(AN,R-ERP),IR(ERP,R-AN),Payment(ERP,R-AN)
+
+Commerce automation: Integration b/w ERP & AN.
+
+Why payment is done in ERP, why not in ARIBA?
+
+If payment is done in ariba how will you update the account field or balance sheet against that requisition. In Ariba we don't maintain finance related data. So payment is done in ERP & Status update in done to AB.
+
+Upstream & downstream:
+
+Service sector:
+
+S2P: Sourcing(AB)--Contract(AB)--Contract compliance(AB)--PR(AB)--PO(AB, R-AN)--GR/SES(AB,R-AN)--Invoice(AB,R-AN),IR(ERP,Status update to AB, Status update to AN), Payment(ERP,Status update to AB, Status update to AN).
+
+P2P Indirect: PR(AB)--PO(AB,R-AN,R-ERP)---GR(AB,R-ERP)--Invoice(AB,R-AN,R-ERP),IR(ERP,R-AB)--Payment(ERP,R-AN,R-AB).
+
+Here both S2P & P2P will Be there because S2P is for new product & P2P is for old product. P2P is catalog items.
+
+Integration starts from IR. Will it impact any process while submitting here? No. Because will us webservice call. S2P is introduced in 2017 any changes done in GR automatically changes are moved from ERP to Ariba.
+
+Production/ manufacturing sector:
+
+S2P: Sourcing(AB)--Contract(AB)--Contract compliance(AB)--PR(AB)--PO(AB, R-AN)--GR/SES(AB,R-AN)--Invoice(AB,R-AN),IR(ERP,Status update to AB, Status update to AN), Payment(ERP,Status update to AB, Status update to AN).
+
+P2P Indirect: PR(AB)--PO(AB,R-AN,R-ERP)---GR(AB,R-ERP)--Invoice(AB,R-AN,R-ERP),IR(ERP,R-AB)--Payment(ERP,R-AN,R-AB).
+
+P2P Direct: MRP(ERP)--PR(ERP)--PO(ERP, R-AN)--PO Confirmation(AN,R-ERP)--ASN(AN,R-ERP-ID)--GR(ERP, against ID, R-AN),Invoice(AN,R-ERP),IR(ERP,R-AN),Payment(ERP,R-AN)
+
+Do you think in production sector they reply 100% on direct procurement? No. To handle raw material & other services we need support function, to process all these you need laptop. This not related to your end product wich you are producing in this sector. It helps indirectly in achieving profit.
+
+How to identify whether it is S2P PO or P2P PO?
+
+S2P as it says source of new product. You will have contract compliance & it will come automatically to Downstream. S2P is called as Contract catalog items. At PO level if you find Contract ID it is S2p PO.
+
+P2P: You will not find CID. So these are called as Non-contract catalog items. 
+
+For S2P new webservice call be done. so IR will not fail. S2P was introduced in 2017 so no need of replication of GR,Invoice to ERP.
+For P2P old web service call both GR & INVOICE should be replicated to ERP.
+
+Now you identified difference b/w S2P PO& P2PPO. How you will identify in production sector because P2P Indirect & p2p direct both are present?
+
+In both cases PO & GR & Invoice ae going to ERP. Will be there any clash? NO. SAP has designed system such a way that if the origin of the PO is AB. My job is only todo IR IN ERP, rest all fields i will not touch.
+p2p direct all process starts fom ERP. So its my job i have to take care i will apply all my custom logic if they have designed.
+
+
+If transferring data from S4 to ARIBA.  Message type is IDOC
+If transferring data from ARIBA to s4  Message type is cXML.
+
+CIG is cloud based middle ware. Transmits all message from S4 to ARIBA.
+CIG (Authentication(Shared secret +certificate) + message.
+
+S4--> CIG>ARIBA
+S4--< CIG<ARIBA
+
+
+
+CI9:Cloud integration adapter--This is on-premise solution.
+
+Direct connectivity: also called native connectivity. No middleware b/w ERP & Ariba.
+
+CIG: Cloud integration gateway--On-cloud solution.
+In SAP landscape PI is one middleware to integrate b/w all SAP Applications.
+SPRO: Stands for SAP Project Reference Object.
+
+How to configure?
+
+1) BASIS Consultant: They should install & activate ERP add on(either for CI9 or CIG)
+2) ANID is unique for each organization.
+Define Buyer Organization ANID. Why we need to define? Why not supplier? They are million of supplier on ariba network. How they understand whether they are receiving PO from which customer. Once we do that any invoice created against PO it will go to this customer only.
+Leading system: Source system for all main transactional document. What is transaction document? PO. Basic integration starts for ERP Starts from PO not from PR. Please look at Integration fields above. If we have upstream only then it is contract document is transactional document.
+
+Directions:
+
+Outbound:(Source system is ERP, Destination system is Ariba network)
+Inbound:(Source system is Ariba buyer ,destination system is ERP)
+
+Scenario: If PO in configuration is set as Direction as Outbound, then it is Confirmed that Source system as ERP, Destination as Ariba. Also called as P2P Direct.
+          If PO in configuration is set as Direction as inbound, then it is Confirmed that Source system as Ariba, Destination as ERP. Also called as P2P indirect also S2P, because S2P also process starts from Ariba.
+          
+
+Web services: BASIS consultant will ask you following
+URL: AB URL, AN URL. For P2P Direct process AN URL is mandatory.
+Authentication (Shared services + pwd) +certificate
+Port: create new port & assign here.
+
+BADI outbound: Direction is Outbound
+BADI Inbound: Direction is Inbound.(S2P/P2P Indirect)
+
+PO--Check PO--Line items--Check contract id field is empty--p2p indirect
+                          Check contract id field is  not empty--S2p 
+
+
+What is CIG?
+
+Cloud based middleware which is specifically used to connect only for ARIBA. For all other cloud based SAP integrations applications like CONCUR,Successfactor CPI (cloud based) is usedn.
+
+CIG, enabled by cloud platform integration, gives you a fast & simple way to connect you to ariba applications, backend erp system & trading partners. It has intuitive interface which has self service tools makes you configuration process faster.
+
+For SLP, Business partner functionality is mandatory.
+If the suppliers are existing in SAP ECC, if client wants to move from ECC to s/4. You have to create BP numbers and then migrate those suppliers from ECC to s/4.
+
+CIG-Overview-SLP.
+
+4 web services will be used.
+
+BusinessPartnerSUITEBulkRequest_IN
+BusinessPartnerSUITEBultRequest_Out
+BusinessPartnerSUITEBultRequest_ConfimationIN
+BusinessPartnerSUITEBultRequest_ConfimationOut
+
+
+If any data is coming from ARIBA_SLP to ERP it is considered as BusinessPartnerSUITEBulkRequest_Out. Once it reaches to ERP it creates an BP number and confirms using BusinessPartnerSUITEBultRequest_ConfimationIN.
+
+Configuration steps.
+
+Cloud Connector:(Job of BASIS Consultant)
+Download cloud connector from cloud solution. Go to Cloud connector based on your operating system.
+
+
+
+
+
+

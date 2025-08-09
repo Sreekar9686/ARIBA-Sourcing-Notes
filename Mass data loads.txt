@@ -1,0 +1,81 @@
+Mass data loads: Move data manually from ERP to ARIBA
+Master data integration: Automatically move data from ERP to ARIBA.
+If everything is possible in master data integration why we need Mass data loads.
+To perform master data integration 2checks needs to be pass:
+1) Master data must be exist in ERP& ARIBA
+2) Format of the data must be same in ERP & ARIBA. 
+do you think Format of the data must is same in ERP & ARIBA.
+Do we have Purchasing unit in ERP? NO, it exist in ARIBA.
+Do we have commodity code? Yes exist in ERP but with custom code. In ARIBA we have standard commodity code.
+Definitely we need mass data load:
+In mass data load:
+We will move 1) Purchasing unit 2) Commodity code 3)Tax configuration. 4) User & roles creation 5) Supplier.
+To perform mass data load you need access for site manager & integration manager.
+Now path for perform. Mass data load: manage? core admin>site manager>Data import/export. 
+Now there is something called data operations or we can call as different types of operations to perform while importing data into system. If scenario is to update 200 fields and data has updated 1000 fields. To mitigate this risk we have to be aware of different types of data operations.
+Suppose you have 100 fields .csv file.
+Create field: 70 new records + 30 old record.
+70 new records will be created.
+Update: 80 new records + 20 old record
+20 old record will be updated.
+Load: 90 new record + 10 old record:
+Creation of 90 record + updating of 10old record.
+Deactivated:
+95 new record + 5 old record.
+Only 5 record will be deactivated.
+
+Implementation project: Create. In this eg: we are implementing from scratch and you don't have master data in production whichever you receive from data team you need to create. You will never do load, update.
+Support project : Load, deactivate. In support you receive 10k records of file from data team. will you able to differentiate which is new record & old record? NO. Then use load mode it will create & update if any record is new creation. if any record needs to be updated. It will be updated.
+
+Commodity code:
+How to import commodity code in system: Manage>site manager>Data import/export. Search for field Commodity code. Export the list of commodity code. Now you see list of commodity code available in system. What is scenario in implementation project? You wont see list of commodity code from where you will get. Register yourself in UNSPSSC site and they will provide list of commodity code. 3 fields in .csv file.
+Domain: Origin of the code
+Unique name: Commodity code 
+Name: Description of the commodity code.
+Parent unique name: Hierarchy name of the commodity code.
+
+Is it mandatory to load all commodity code into system? Yes.
+You can disable few fields with option enabled option setting as NO. This will tell us this commodity code will not be shown to end user. Then why we are loading all commodity code to system if organization is not using. ARIBA if there is audit it perform system check which fields are used.
+for eg: Software services company few fields are mandatory. Do you think raw material related commodity code are relevant to them? NO.
+Purchasing unit: Group of buyers is called as Purchasing unit. Definition differs upon client. Format of the data is same b/w ERP & ARIBA. It Company code+purchasing.org+purchasing unit. Export the .csv file from site manager and assign purchasing unit.  You load purchasing units in SAP Ariba Buying solutions to separate spend activities by entities, such as departments, business units, or purchasing organizations.
+Tax config:Can be done in ARIBA. Client may think that tax code config we will do in 3rd party system from there we will integrate and to ARIBA. Best practice is to use in ARIBA.
+
+Supplier:
+Basic of  Integration Scenario:
+
+Source system: Data is created , updated here  : ARIBA or ERP
+Destination system: Data is replicated over here. ERP or ARIBA 
+
+What is integration? Sync b/w source system & destination system.
+
+Suppose you have made changes for supplier in ERP 2 times & same changes are replicated to ERP twice. After that if the changes are made to supplier in ARIBA thrice, changes will not be in sync. It is data mismatch. At a given time you can implement only 1 scenario either from ERP to ARIBA or ARIBA to ERP.
+
+Supplier creation
+
+ERP to ARIBA 
+
+Create of supplier in ERP includes benefits. If supplier is onboarded in ERP all financial & production related info can be captured. All fields are pre existing in ERP. You can utilize the field to fill all required data. Now you can send supplier related data to ARIBA. Here procurement related specific data can be sent to ARIBA. What is need of FICO related info in ARIBA. Not required.
+
+ARIBA to ERP
+
+In ARIBA you create supplier here, and you want to push supplier related info to ERP. Financial & production related info can't be created in ARIBA. ARIBA has 2 different architecture & database. You need to create custom fields, custom validation, integration customization, data mapping. Each field is an enhancement request. it will cost a lot. 
+
+Role to export supplier: SM Administrator, SM Ops administrator.
+
+Path: Manage>SM Administration>Data Import/export. Import select as supplier. Click on sample file .csv file. Fields in sample file Source system, active are related to ARIBA. 
+
+How will you export suppliers from ERP to ARIBA?
+
+Consider the scenario you have 10k suppliers in ARIBA. You will do it mass load that is manually. Suppliers who want to be on ARIBA,they need to pay to ARIBA network for receiving PO. It depends on Invoice amount that is.5%.
+If supplier is receiving only 3-4% that costs only 10k usd. they think that i don't want to be on AN. That defines they are small suppliers, they are scenario where 1 time supplier also are present they dont want it on ARIBA. Lets approximately out of 10k suppliers 7k supplier needs to be imported. How to upload them?
+
+Step1> Go to ABAP er & say build a custom logic report for this scenario , including the blocked supplier or inactive supplier in ERP. Report output will be excel file. Blocked supplier why we need to include in initial load? If supplier is blocked in ERP & you are not selecting that supplier in initial step, maybe at later at given time you mark that supplier as active as a sync b/w source & destination system this data will go to ARIBA. Now ARIBA thinks that i need to update the info for this supplier, i can't proceed  to update because as an initial load i didn't receive these suppliers from ERP to ARIBA. If i didn't receive then how will i update info for these suppliers. It always recommended to included block & inactive suppliers to be loaded in initial load.
+Step 2> Import>supplier.csv>successful result> Nothing will be seen in ARIBA. Because to see suppliers in ARIBA, what is the primary field that should be present, that is email id field in .csv file.
+Step 3: Import>suppliercontacts.csv>Successful result> Supplier profile. In this step generally from 1 supplier you can have multiple contacts. eg: You have taken KPMG Pvt.ltd as supplier contact person has selected. For same supplier 1 more contact can be selected. kpmg is parent company, under this their presence is all over world. For this instance you have are creating PO in India then you should see India contact person. This billing should be done for India enterprise not for US. Will you proceed to do business with them now? No you can't because still supplier is not registered on AN.
+Step 4: Mass invite> Give the wave name> email will be triggered for all those suppliers> they click on link > Unique ANID will be generated synced back into AB.
+Step 5: Data import> load supplierqualification.csv>successful result> suppliers will have qualified status.
+Step 6: Client data team> link purchasing unit for suppliers
+
+Delta upload(creation, updation, block,inactivating)
+Requirement: Supplier should be qualified. 
+When supplier gets created in ERP, pulled back to ARIBA. Supplier will not be visible again it follow SLP process invitation, registration, qualification. It will not stop registration because requirement from ERP is supplier status should be qualified in ARIBA.

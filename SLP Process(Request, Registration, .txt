@@ -1,0 +1,68 @@
+SLP Process(Request, Registration, Qualification)
+
+Create Supplier Request
+
+Supplier request is also template based FORM. Supplier request is duly filled by buyer and this is called as internal registration. We can fill details of supplier on behalf of supplier to reduce unwanted supplier information.
+
+If we place an link on our website to register supplier that is an external registration. They are millions of supplier registered & difficult to find our required supplier information for us. 
+Most of the organization prefers to use external registration.
+
+Once supplier is created, it will go for approval. Once it is approved we can see supplier 360 degree profile. 
+SM Vendor ID: S9876   This ID is used only for SLP Purpose.
+ERPID:VDR1234   --When system is integrated wth S4 this ID will change
+ANID: Unique for each supplier
+Supplier id: ACMID12345   This is used for sourcing purpose when there is no SLP in place.
+
+When you have Multiple ERP System you are sending data through MDG to Ariba system.
+
+1ERP system to ariba system you send data using DRF out.
+
+Lets suppose you have 1000 suppliers in ERP, those suppliers can be migrated to SLP using DRF out.And now SLP is implemented. When you are creating 1001 supplier in Ariba using SLP data is sent to ERP, Data is sync with ERP SYSTEM. Now data is bidirectional sync b/w both system.
+
+Now you can Registration questionare to supplier. In this we can external registration & internal.
+
+1st external registration supplier will fill the details sent by buyer again this is an template configurable. Once it's done we will approve & if we can fill the internal registration.
+
+Who will initiate Process? It's an internal process w.r.t to buying organization, they will initiate process from their end
+Supplier will visit Client Corporate website, getting touch with their teams.
+
+
+
+How to raise request for Supplier onboarding?
+Create> Supplier request. Fill in basic details of Supplier and submit
+
+
+Process will be done in 2 ways from client perspective.
+1) Mandatory fields of supplier  + Supplier enablement team email id + ph.no
+2) embed URL, send link----Web development team need to involve in this to embed URL from Client team
+What if Client opt for Embed URL.
+If embed URL is sent. Supplier will fill random details, and then it will approve from client without verifying. Normal supplier needs to be educated while opting this field. If client don't have sufficient time, tells that supplier needs to fill in the data then manual check can be done for specific supplier.
+
+
+How to approve Supplier request?
+Home>More>Supplier request> view> approve. Fill message.
+After Supplier request is created you have SM Vendor ID created and basic info.
+
+
+Can you start Sourcing project creation for specific supplier after request creation? NO.
+If Supplier do not have an ANID, we can't invite them to sourcing project
+If suppliers are selected for sourcing project without ANID, just finished supplier requestion form is submitted. ARIBA System won't understand to which suppliers it needs to sent. Because many suppliers are available in system.
+List of questionaries for suppliers to check eligibility criteria.
+Standard questionaries can be sent to suppliers. Based on requirement from client we can customize questionnaire as per needs by using templates.
+Email will be sent to supplier.
+Supplier have two options. 
+Login to Ariba network to answer questions.
+If Supplier is already registered on network they can sign in and answer questions and submit.
+Sign up
+If Supplier is new to system, they can create userid and password in same portal. After creation ANID will be generated. After ANID, Buyer portal will be refreshed that you have ANID.
+
+Same Supplier might be doing business with different buying organization, in this Case ANID will not change, Vendor ID will be different.
+After submitting answers to questions, it will reflect in buyer portal, they will view and approve and registration status will be changed.
+
+Common Supplier
+
+Once supplier is created in system, the default would be common supplier. They can do perform activity for upstream. To perform for downstream like PR,PO there should be partitioned data. We need to create the data or we can link it if there is an existing supplier.
+
+Up stream supplier---supplier with registration process completed are called this.
+Downstream supplier ---Qualified suppliers, Awarded suppliers in sourcing project.
+Once you qualify the supplier background job will run. it will take all qualified suppliers to down stream.

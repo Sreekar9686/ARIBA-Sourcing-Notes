@@ -1,0 +1,49 @@
+Catalog KT
+
+What is catalog?
+Catalogs are text files stored on a company’s website. Catalogs describe the products and services an organization offers and the prices they charge.
+
+What is the purpose of implementing catalog?
+What we are trying to achieve my implementing catalog?
+
+Catalogs are text files stored on Ariba network that describes any product or service. catalogs are created for any product or service irrespective how it measured each, quantity.
+
+Catalog Creation Workflow
+ 
+The general catalog creation workflow is outlined below:
+The supplier creates the catalog content file and initiates the catalog upload through Ariba Network. Automatic catalog validation and verification ensures catalog accuracy. A user with Customer Catalog Manager privileges views, downloads or subscribes to the catalog. After an approval process, the catalog is activated and becomes available.
+
+An Ariba catalog is an organized list of goods & services which is made available for end user for easy retrieval of these goods for purchasing.
+An catalog of same items can grouped together that can be nested in together categories & subcategories. This is called catalog hierarchy.
+
+Catalog Features
+Some of the features of the Ariba catalog are:
+Access to all product and services offered using an intuitive user interface.
+Support for supplier site maintained content using Punchout.
+Strong integration with buying organization processes and systems.
+Robust product information to leverage an organization’s commerce infrastructure and provide other value-added information. Multi-sourcing and product comparisons both for end users as well as for buyers searching Ariba Network catalog repositories.
+Multi-select capability enabling users to add multiple catalog items to a requisition at the same time.
+Partial catalog item support to allow users to locate items that are not fully specified. Users provide the additional item data when the requisitions are created.
+User-defined custom catalog searches that increase efficiency for frequently used searches.
+Flexible display options to allow end user control of how items are displayed on the search page.
+Integration with Ariba Contract Compliance.
+
+Benefits of catalog?
+Catalogs contain robust information about products, pricing, part no etc. Whenever supplier creates new version of catalog ariba network will maintain current version. by maintaining this it will reduce miscommunication from buyers while adding items to cart, while doing invoice & payments as well.
+
+Static catalogs.
+These are easy searchable find your item add to cart no extra steps are needed. They are few drawbacks. Realtime inventory.
+
+Punchout level 1
+Items are maintained at supplier website. Requester clicks on supplier link find their required items adds to cart and checkout from there in supplier website. Punchout session is closed. Items can't be marked as fav.
+
+Punchout level 2
+
+Same as Level 1. In this URL take you to specific item.
+
+
+Catalog kits
+
+Kits are created for easy purchase to avoid hurdles in feature order placement.
+Kits can be grouped from existing items available. Kits can be created from catalog or non-catalog items or punchout as well. example's are whenever new employee onboarded to project. supervisor can easily place order to employee which consists of laptop, bag, warranty which all grouped together as KIT.
+

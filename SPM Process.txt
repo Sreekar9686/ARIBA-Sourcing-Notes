@@ -1,0 +1,53 @@
+SPM Process
+
+SPM is a process that defines,measures,analyzes  supplier performance that your business goals are met. This uses KPI(KNOWLEDGE Performance indicators) which is same across all suppliers by region,commodityetc. It will rate supplier using scorecards.
+
+
+How to create SPM?
+
+create > SPM>  Then opens 
+
+Enter all details , select best suited template from drop-down. You can edit it as per your project needs.
+
+Overview 
+
+ONCE project is created you have all details of project creation in full view. most of the people use full view instead of compact =view.
+
+Documents
+
+This contains lot of your project creation documents like masterdata, maintaining score cards supports pdf file.
+
+Tasks
+
+tASK can happen in recurring phase, if this project needs that kind of assessment. Task are associated for each team member.
+
+TEAM
+
+Usually project owner is creation of this project.
+ Team can start working on tasks where they have assigned. they need to mark status when they are doing work. so we can know progress of the project and other team members can also view it.
+
+
+Message board
+
+This is useful when you want to communicate within project. You can communicate with people outside people by sending email.
+
+
+History
+
+This will track entire SPM project what you have done.
+
+
+In planning phase of SPM.
+
+
+In this phase you perform number of tasks that will occur in recurring phase. 2 imp during this phase is Scorecards master and survey master.
+When scorecard has been designed template creator has ben discussed with other team from your organization which suits best template which involves KPI. These KPI can be collected either through reporting or doing survey for supplier.
+
+Survey master data can be collected from internal participants which collects information and we can grade each question.
+
+Scorecard: This isa tool thst is useful to track and summarize how good supplier is performing. Usually we have KPIs defined for scorecard. supplier can add comments and we can see active contracts with supplier.
+
+
+Recurring Phase:
+
+This phase allow group of tasks associated with documents are automatically should happen with defined intervals of time. Once this recurrence happens each document is created with new version of particular date and year. This phase is controlled by master recurring phase.

@@ -1,0 +1,251 @@
+My name is Sreekar, i am an computer science graduate from GITAM university bangalore. I joined wipro in Dec 2020 & started my career as ARIBA Consultant. Currently i have 4 years of experience in ARIBA. Currently i am working as Catalog manager to my client. Where my role is to implement catalogs from end to end & maintanence of catalogs.	Also
+i have worked as an content analyst where my role is gather the requirement & implement the landing page & tiles. Conduct the workshop to client before implementing the landing page & train them as per business needs as they are new to Procurement system. I am also certified consultant in ARIBA Sourcing. I am excited about this opportunity because this role focusses on CIG & SCC . I'm now looking forward to bringing my skills & experience to dynamic organizations like yours, where i continue to grow & add value to team & project
+
+
+
+
+
+Downstream implementation.
+
+Before you can begin to use guided buying, you need to load your organization's master data to your buying solution, such as commodity codes [page 87], accounting information, users [page 119], suppliers [page 91],and purchasing units [page 90] (if applicable). This data is typically imported as part of SAP Ariba's deployment of your site and might be updated by periodic imports from an integrated ERP system.
+You also need to configure the following areas of your site: catalogs [page 81], approval processes [page 80], sourcing templates [page 80] (if you plan to allow users to request quotes from suppliers through guided buying),and spot buy.
+
+
+
+Describe about catalogs & implementation process.
+
+
+Catalogs:
+
+Catalogs are text files stored on a company’s website. Catalogs describe the products and services an organization offers and the prices they charge.which is made available for end user for easy retrieval of these goods for purchasing.
+
+Benefits of catalog?
+Catalogs contain robust information about products, pricing, part no etc. Whenever supplier creates new version of catalog ariba network will maintain current version. by maintaining this it will reduce miscommunication from buyers while adding items to cart, while doing invoice & payments as well.
+
+Types of catalogs
+
+static catalogs
+Static catalogs are created in two main formats: CIF (Catalog Interchange Format) or cXML (Commerce Extensible Markup Language) format. These catalogs are stored on Ariba easily searchable & added to cart .
+The data resides in ARIBA. easy to shop.
+
+Disadvantages:
+No Realtime inventory. Supplier management  to keep catalogs current.
+
+Punchout catalogs
+
+Punchout catalogs: Details about price and info about goods are stored in supplier database. if you wish to buy click on buy from supplier tab that is called punching or punchout from our ariba system, now we are redirecting to supplier website. The data of the items & content of catalogs is maintained by supplier.
+Basic data resides in ARIBA and main data resides in Supplier website.
+Basic data e.g.: Supplier id, supplier part id, manufacture id
+Main data: Price, commodity code, unit of measure, effective date, expiration date.
+Punchout catalog items are hosted on the supplier’s own website where you can select items for purchase. Once the Punchout session is completed, the selected Punchout catalog items will appear on your requisition as line items. All Punchout catalog item searches are performed on the supplier's website. The items hosted in a Punchout Catalog may be referred to as dynamic items.
+
+Punchout level 1: Items are stored at store level.
+Punchout level 2: When you click on buy from supplier tab, it will redirect you to only specific item. you will not able to add any other item to cart.
+
+
+Difference b/w static & Punchout
+
+Punchout enabled is true it is punchout and then Supplier URL is mandatory. and give product item after followed by website name. 
+
+Punchout catalog items are hosted on the supplier’s own website where you can select items for purchase. Once the Punchout session is completed, the selected Punchout catalog items will appear on your requisition as line items. All Punchout catalog item searches are performed on the supplier's website. The items hosted in a Punchout Catalog may be referred to as dynamic items.
+
+Punchout process flow
+The user selects a Punchout item in the SAP Ariba Procurement solution catalog. This selection sends a request to the SAP Business Network to establish a connection with the remote catalog.
+
+The SAP Business Network authenticates the buying organization and forwards the request to the supplier’s Punchout site.
+
+The supplier sends back a URL of a webpage on the supplier’s Punchout site designed specifically for the buyer. The procurement system redirects the user to this URL. The remote shopping site appears in the user’s window and the user begins shopping.
+
+In these they are POSR & POOM.
+
+After shopping, the user clicks the site’s check out button, which moves the contents of the shopping cart from the supplier site back to SAP Ariba Procurement.
+
+Process to implement catalog
+
+Gather the requirement from business that is procurement department. In my current project there will be an category manager who initiates the process for catalog enabelement.
+
+Step 1: Kick off call with category manager & supplier and other team.
+Step 2: Catalog team to share overview about the catalog types.
+
+During build phase we need to conduct a training for client data team & supplier.
+Supplier is giving us the data and client data team is responsible for validation of the data. 
+
+1) Restriction of double quote in value field match. " ",
+e.g.: Supplier id:  "4387929", "539729729", "4927"
+Suppler id: This should be AN of supplier. If we give any custom id it will through up error. Even if SM vendor id is given shows error. SM vendor id is limited only till upstream.
+Classification code(Commodity code) : It allows multiple values.
+e.g.: Each product will come under an category or sub-category. We need to map each line item or product or service to commodity code.
+e.g. laptop code:80101600
+If you are purchasing laptop and you search in UI it will take lot of time because there are lot of items for laptop. it will take 5-10 minutes and this leads to performance issue.
+To mitigate this issue define category, sub-category at this level. so no issue persists in future. This is also called as commodity hierarchy.{80101600;1600;16}
+They should give UNSPSC Standard code. Don't give custom code
+Image file should be given. maximum size is 1mb. resolution is 400*400
+Supplier URL is mandatory.
+
+Step 3: Catalog team to share an justification form & vendor upload form to supplier. Supplier has to fill in the basic details, how much PO Count they are able to process in an year. Supplier fields.
+Step 4: Upon receiving details from supplier. We will setup master data in QA Environement. That is Mapping of supplier ANID & Buying organization ANID for punchout catalog implementation.
+Step 5: Supplier to upload catalog from their side. Once it's activated. We will create Test PO for different combination. Supplier to confirm whether they are receiving PO or not. PO Should be routed to AN.
+Step 6: Requesting category manager to raise the APEX request for supplier mapping in Source system.
+Step 7: Same procedure in production environment.
+Step 8: Create a tile request for catalog. So end users can see tile image for easy access of the catalog.
+
+As catalog manager, we can also import catalog. Process as follows.
+
+Importing catalog:
+Catalog subscription: Represents all non-contract items belongs to particular supplier.
+Select supplier
+Empty catalog: We can create this without any catalog items.
+Skip approval: Is always YES. Because this is already validated by client. no need to take approval in system.
+Activate automatically : YES.
+Allow multi-level supplier cif file: NO. Because We can't insert 2 AN ID's in 1 cif file. If it is given it will cause an error. It will give error like. Suppose you have creating subscription for supplier and you have 2 ANID this will fail because you have selected supplier while importing and ARIBA will check that supplier AN ID and supplier ANID in cif file. Items will load belongs to supplier which you have loaded..
+Once you upload file it will status for Pending for buyer, Verified, validation, Activating, Activated.
+
+How to export Catalog cif file?
+
+Download under the Catalog validation rules option under catalog manager.
+Catalog validation: If requirement is few fields in CIF file is  should be mandatory. Go to particular field under catalog validation click on actions>edit supplier rule.
+
+Hierarchy editor: 
+Each product follows category & SUB-CATEGORY. Each product belongs to 1 commodity code.
+This is commodity code related field which you need to load in the system. After loading into the system go to Scheduled task page and run the "HIER" task. After this all hierschy will come to ARIBA.
+
+More about Catalog Configuration
+
+Catalog kits: Grouping of catalog items from same supplier or different supplier. All these items are static. E.g.: When an new employee joins we need not to add all line items search in UI. We can make few items required few not required.
+Catalog views: We can customize who can see catalog items based on group.
+Catalog Validation: We can setup validation based on supplier rule.
+Catalog hierarchy: This is used to define catalog items in cif file.
+Index rebuild: When you import catalog, if it goes into infinite loop, we can come here and run this job run it will take time for 30 minutes to complete tis task.
+
+
+
+Content Analyst:
+
+As part of this role, i did the Landing page & forms implementation using JSON.
+
+Landing Page:
+
+FORMS:
+
+FORMS are data entry pages which captures information from users and triggers an RFQ Event.
+
+
+
+
+CIG:
+
+Enabled by SAP Cloud Platform integration, gives you a fast, simple way to connect with Ariba apps & backend system. It's intuitive self service tools let's you easy to configure & test process.
+
+Configuration steps 
+
+Configure SAP Cloud Platform cloud connector.
+
+The CC serve as the link between the ON Premise system & cloud platform.
+The CC runs as on an premise agent in a secured network & acts as an reverse invoke proxy b/w on premise system & cloud platform.
+A single CC Supports connectivity with multiple backend system.
+
+Download the cloud connector from SAP Service marketplace. Install on your machine define path, port. whichever is needed.
+Search for cloud connector on your machine & open it. Now define the hostname & proxy. Proxy is default 8443. We can change later. Give username & password to login.
+Now define subaccounts in cloud connector.
+
+Why we need to define subaccounts
+
+The purpose of using subaccounts in SAP Cloud Connector for CIG (Cloud Integration Gateway) integration is to establish a secure and organized connection between on-premise systems and SAP cloud services.
+
+1) Segregation of Resources
+Subaccounts allow you to logically separate different environments (e.g., development, testing, production) or business units within your organization.This ensures that each subaccount has its own isolated configuration.
+
+2) Each subaccount can be linked to a specific cloud service(SAP ARIBA, Successfactor), making it easier to monitor and troubleshoot integrations.
+
+Insert all required information in subaccounts field. Cloud connector will be operative only if the subaccount information is saved.
+Click on Cloud to On premise & define backend system details. Once it's all detials are filled. Cloud connector is installed & configured ready to use.
+
+
+Add on SAP ERP/S4 HANA - Install the Add on your ERP.ARBCLOUDINTSAPERP/S4HANA
+
+To enable CIG for Ariba solution: Goto ARIBA Business network, click on administration Download certificate & click on enable cloud integration gateway.
+
+CIG Certificate download:
+
+Download CIG certificate on network. Certificates are different for Test & prod. 2 Certificates for each load balancer & tenant.
+
+Once it is done define Add on Authorization, object,class on ERP Side.
+
+We will define using Tcode SU21. Following are provided by Ariba
+
+ACIG: Authorization object class.
+ARBCIG_CLS:Authorization object for Ariba class
+ARBCIG_SPR:Authorization object for Add on Special program 
+ARBCIG_PGR:Authorization for program execution
+ARBCIG_RFC: Auhoorization for RFC 
+
+How to configure Add-on--Define the Global settings.
+
+To navigate to global settings in SAP ERP/S4HANA
+
+Run transaction code SPRO. Customization execution project screen appears
+Click SAP Reference IMG-->Display IMG Appears.
+Navigate to Integration with other SAP Components>>CIG>>Global settings
+
+In order to establish connection with CIG. User needs to define Global settings.            
+
+1)Maintain Certificate.
+2)Define RFC Destination.
+3)Define Port
+4)Define Logical system
+5)Configure Receiver Port.
+6)SAP Data Sync--Send SAP system information to CIG
+
+1)Maintain Certificate to authenticate users & clients, and to ensure secure connection HTTPS to CIG
+2)Run transaction code SPRO, Under Global settings, Click on Maintain certificate  --Trust Manager screen appears
+       Click on SSL Client Anonymous---->Import certificate you have downloaded from business certificate. Now you will see certificate have been imported successfully along    with                   Validity of the certificate.
+
+3)Once it is done it's time to restart the system if certificate is not imported successfully. Enter tcode /nsmicm. Administration> Restart.
+
+2) Define RFC Destination
+
+RFC Destination is needed for transmitting IDOCS. It allows you to connect from ABAP System to external system that is ARIBA.  Before you create RFC to CIG, ensure you have P username & password when you have enabled CIG on Ariba network.
+
+Click on create RFC Destination---> Click on HTTPS Connection to external server
+
+Create RFC Destination--->ARIBA_CIG
+Connection type: HTTPS connection to external server
+
+Target System settings:
+Target host:testacig.ariba.com   Service no:443.
+
+Under Logon & security tab 
+
+User:
+Password:
+Authentication type: Basic Authentication.
+Save
+
+Create Port Destination:
+
+Port is the secured communication channel in which IDOCS are sent. Port describes the technical link b/w sending & receiving system. This is outbound communication.
+
+Click Create Port definition
+XMLHTTP --Tab --Under this Port CIG Port
+RFCDestination field: ARIBA_CIG
+
+Create logical system:
+
+To receive Outbound IDOCS. We need to define Logical system.
+
+New Entires: Enter Log.System Name : ARIBA Sourcing. 
+Description for Logical system.
+
+5)SYNC with CIG
+Fill relevant field. Send Connection to CIG. All fields should be shown in Green then your connection to CIG is successful.
+
+
+
+ 
+
+
+
+
+
+
+

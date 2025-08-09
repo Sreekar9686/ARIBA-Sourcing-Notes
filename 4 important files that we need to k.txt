@@ -1,0 +1,21 @@
+4 important files that we need to know when we talk about supplier data from ERP.
+pr status.
+
+Draft: The requisition is still Created not yet submitted.
+Submitted: Requisition has been submitted with required goods/services for approval.
+Composing: PR is still being edited.
+Approved: PR is fully approved and ready for further processing..
+Denied: Person has declined your requisition.
+Ordering: Requisition is in process to generate 1 or more PO.
+Ordered: Requisition has been ordered & PO has been sent to supplier via AN.
+Receiving: Requester started receiving partial goods they have requested
+Received: Requester confirms all orders has been received from their PO.
+
+
+
+master data integration.(commodity code, PU, Supplier, tax)
+
+
+
+Catalog validation.
+

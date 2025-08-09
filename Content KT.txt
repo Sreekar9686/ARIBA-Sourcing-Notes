@@ -1,0 +1,64 @@
+Content KT
+
+Guided Buying is a persona-based application offering non
+procurement professionals one single place to search for 
+goods and services, making purchases with little to no 
+involvement from your procurement department.
+
+Non-Procurement Professionals
+ Non-Procurement Professionals:
+ • Casual Users
+  Users who make infrequent purchases (less than five per year)
+ • Functional Buyers
+  Users from marketing or facilities departments (not procurement departments) spending a lot of their 
+time buying goods and services for their department
+
+One Place To Buy Goods and Services
+ At-a-glance layout 
+ Recently ordered items
+  Popular content
+  Search across items, services, 
+suppliers, requisitions
+
+One Click Review and Approval
+ Approvals
+ Operating business rules 
+ Specify the approvals that are 
+required for different types of 
+requests
+ Configure approval processes
+  Approval rules that define the 
+conditions 
+ Approvals that define actions 
+for each rulE.
+Summary
+Provides a simple, smart, and elegant experience for end users and functional buyers to increase 
+user engagement across all spend
+ Smart guidance and predictive search functionality help people inside and outside the procurement 
+area find:
+  Items and suppliers they need, 
+
+ The main configurable UI elements are:
+ • Home Page
+ • Landing Pages
+ • Tiles
+ • Branding (Company Logo and Search Bar)
+ All these resources can be configured via
+ • JSON files
+
+The Home Page search menu is the main entry point for users into the system.
+ Based on the user selected criteria, search results may include:
+ • Catalog Items
+ • Non-Catalog Items
+ • Spot Buy Items
+ • PunchOut Items
+ • Landing Pages
+ • Specific Tiles
+ • A mix of the above
+ The search engine uses the same technology as SAP Ariba Procurement.
+ • In addition to description, search includes supplier name, supplier part ID, category, etc
+
+JSON
+ . JSON stands for JavaScript Object Notation
+
+ .

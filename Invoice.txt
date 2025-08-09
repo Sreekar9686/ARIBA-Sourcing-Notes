@@ -1,0 +1,68 @@
+Invoice
+
+Invoice is created by supplier.
+
+Invoice management enable companies to streamline current invoice process to automate.
+
+Invoice can be done in following ways.
+
+Supplier submit invoice via ARIBA Network.
+Buyer uses invoice conversion service.
+Buyer can receive & submit invoice to ICS. Supplier can submit directly to ICS.
+
+Now invoice is submitted.
+SAP ARIBA automatically generated invoice recoincillation.
+IR is matched against your PO,recepits,items, quantitites.
+If there are any discrepancy, are nothing within your preconfigured tolerances, IR is sent to Invoice manager for approval.
+If there are unacceptable discrepancy, then IR should be manually corrected.
+Once an invoice reconciliation has been reconciled and approved by the Invoice Manager, a payment approvable is generated. This takes the form of an OK2Pay file that gets sent to your ERP system, validating it is OK2Pay based on the supplier’s payment method and terms (net 30, etc.).
+Payment status will be updated and establishing communication happens b/w SAP ARIBA and ERP. Supplier can also view payment status at Invoice tab in AN
+
+
+Types of Invoices.
+
+PO Based invoice.
+
+Invoice is generated based on PO sent to supplier by clicking on tab supplier.ariba.com. supplier can click on PO Flip process.
+The data from PO will from to invoice. These are called as Release order. A Release Order, which was created from a fully approved requisition that was itself associated to a release-order contract or a blanket purchase order that requires releases. A Release Order is the mechanism by which funds are released from such a contract/BPO. In SAP Ariba, a Release Order is treated just like a Purchase Order in terms of receiving and invoice reconciliation, which is why invoices against Release Orders are considered to be PO-based Invoices, and not Contract-based Invoices.
+
+Service INVOICE
+
+service Purchase Orders require that a Service Entry Sheet (SES) be created by suppliers with the details of the services delivered
+A service invoice is an invoice created using at least one approved service sheet
+Service invoices can only be created against approved service sheets
+Creation of invoices based on multiple service sheets from the same purchase order is allowed 
+Invoicing one or more items from a service sheet is allowed by deleting the items to be excluded from the invoice
+Quantities or unit prices cannot be updated
+The invoice is created based on a Service Entry Sheet (SES) that was submitted by the supplier. The Service Entry Sheet (SES) includes all the details of the service performed.
+
+
+contract invoice
+
+Invoice is NOT created based on Contract PO. It is created against existing contract terms & price.
+
+If Ariba Network enabled, Ariba Network sends the Supplier an email notification each time a contract release, a blanket purchase order, or purchase order is submitted. Once the supplier ships goods or executes on the order, they are ready to invoice.
+
+The following steps outline the process of converting a contract release, blanket purchase order, or purchase order into an invoice by using the Contract Flip tool from the supplier side. A background process on Ariba Network downloads and sends a copy of the invoice to your SAP Ariba Invoice Management.
+
+NON-PO Invoice:
+
+This is standalone process. which is not related to any PO or contract,
+
+
+Let's talk about Paper invoice.
+
+these types og =f invoice basically used by suppliers in few cases.
+
+Supplier wish to send you invoice ober email or fax.
+You need to login to portal. Create invoice based on supplier data and if it is PO invoice data will autopopulated. Invice entry user submits invoice and approval flow is triggered. Approvers receive email notifications to approve. Once it is done IR will be generated.
+Will match against al your items,price,PO.
+Once an invoice reconciliation has been reconciled and approved by the Invoice Manager, a payment approvable is generated. This takes the form of an OK2Pay file that gets sent to your ERP system, validating it is OK2Pay based on the supplier’s payment method and terms (net 30, etc.).
+The ERP system will communicate back the payment status to SAP Ariba. Payment information is stored in the Invoice’s associated Reference tab.
+
+Credit Memo.
+
+This is called credit or refund that you can get from supplier.
+
+If you have ordered particular item from supplier, supplier executed shipping process and deliver goods to you. Then invoice will generate. You fund that there is defect in product you will return and this is called credit memo.
+

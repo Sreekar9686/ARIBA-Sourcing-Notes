@@ -1,0 +1,57 @@
+Sourcing Project info
+
+How to create Sourcing Project?
+Click on create>Sourcing Project
+Fields i Sourcing Project.
+Name:Name of project
+Description: Summary of project
+Copy from Project: If you have any project published you can select, rest all fields will be autopopulated because you have selected project.
+Test Project: YES/NO---Goes for accounting or reporting purpose. In production if you are creating sn project and you select test project as option YES. It will not create reports.
+Yes: In production, if you are selecting "YES" and it will not trigger an email to supplier.
+NO:if you are selecting "NO" and it will trigger an email to supplier.
+Project Type:Full Project, Quick project
+Full Project includes all events  RFI,RFP,RFQ. It will happen in sequential manner.
+Quick Project: You can select 1 event at a time. Can't select multiple events.
+Base language, Owner: These fields show up based on buyer profile when initial registration happens.
+
+
+
+Sourcing?
+You can customize 5 header fields in sourcing & 10 in contract.
+With sourcing will get 5 user license & max upto 20 team member roles.
+
+Why do we use sourcing?
+
+SAP ARIBA Sourcing is an cloud based procurement solution, which is used to optimize sourcing process.
+Eg:If you want an goods or service. You want to procure that product and you dont know who will supply. 
+For this reason you will use sourcing, conduct an events like RFI,RFP,Auction.
+RFI: Defines that you will overview details of supplier.
+RFP: Supplier will give quote. Such as Account information, finance information  overall the years.
+Auction: In auctions we have different.
+Reverse auction: Regular auction 
+Reverse auction with bid transformation: This is some part which supplier says buyer has to pay for transportation, logistics, insurance etc.(basically few cost terms)
+Reverse auction with total cost: This is solely bare by supplier includes logistics everything. We will define at template level.
+Forward auction: This helps when we want to sell any scrap which left from us.(we want supplier increase the price when we are selling)
+Dutch Auction: Supplier can only accepts bid which are sent by buyer, which changes typically in minutes.(monopoly supplier)
+Index base auction: Can be considered as MRP of an production, on basis of that supplier will quote you that i will give 5% or any % of amount discount. MRP is fixed that is ceiling price.
+While creating Sourcing project.
+Full project: This is a package of all events of sourcing. RFP to auction. we can do all in one project. In this you can design approval flow after creating an event.
+Quick Project: You can select 1 event at a time. Can't select multiple events. In this w dont have approval, only publish approval process will be present.
+Surrogate bid: This is used. When supplier can't submit bid when you are conducting an event. He will drop an note that please act as supplier on behalf of me. 
+Quick Project contains: Rules, team, suppliers, content, summary
+Rules are again: Bidding rules, currency rules, market feedback, Summary. These are configurable on template.
+Team: If you want to assign tasks to any person, you can.
+Suppliers: Invite suppliers for event.
+Content: You can specify documents
+Under content we can specify our requirement for supplier. list of tabs available in Content.
+Add tab
+Under Add tab you can add Section. Section can be defined as Heading. Under Section we can insert our question's or line items.
+Summary: Summary of your project you have created.
+Response team: This appears when you have invited multiple people from same organization to bid. But you can set response to yes in this case. So that it will calculate the bid. So as an organization they will receive only 1 bid.
+Incumbent supplier: This is default set to NO. But if you turn to yes, this indicates that you have purchased a good or service from this supplier earlier and now you want to see this supplier how much he will quote for the current event.
+After publishing of the event. Now the event is open. You can act as supplier b accessing their emaild. Path to access Manage>Core administration>Supplier Manager> Users. Copy the email address.
+Review the prerequisites to participate in the event. Select the lots you want to participate in the event. After the response, since you are acting as an supplier you need to provide justification.
+System will populate rank based on the bid gib=ven by supplier. Now you want to split order to suppliers. You can create manual scenario by going into Scenario tab. 
+Types of scenario
+Optimization(Contains best bid, Best bid without tax) & Manual.
+Envelope biding: Technical bid & commercial bid. Can create upto 9 envelope bidding.

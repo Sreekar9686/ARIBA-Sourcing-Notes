@@ -1,0 +1,172 @@
+Contracts
+
+SAO ARIBA Contracts is an cloud based procurement solution which offers centralized repository for contract procurement process.
+Earlier Contracts are used to store offline o folders.
+Contract approval by email and not able track.
+Not able to track contract expiration.
+Not able to ,manage data in structured way.
+
+VS
+
+What needs to de done.
+
+Structure data
+Workflow creation.
+Centralized repository.
+Templates for contract.
+E-signature.
+
+We will award supplier after sourcing event, the we have option to create contract with supplier. All sourcing relevant information is captured into contract workspace.
+Contract is an legal document, where legal team is involved while publishing contract it's all about terms & conditions. We can amend contract after published depends on business use cases.
+Stand-alone agreement: 1 contract with 1 supplier.
+Master agreement: We can create this agreement, under this we can create sub-agreement or you can call it as child agreement. 
+Perpetual: This means contracts will not expire, it's applicable for few services like cafeteria, cleaning services. You can terminate the contract if you are not satisfied.
+
+Contract Management lifecycle:
+
+2 teams involved basically
+
+1) Purchasing team & End users
+Create Contract Request
+Submit Contract Request
+
+2) Contract Management Team
+
+Contract Administrator
+Review Contract Request.
+assign Contract Manager
+Approve Contract Request
+
+Contract Manager
+Input Metadata
+Approve & Create Contract Workspace.
+
+Role of Contract Administrator:
+
+Receive
+Contract Administrator will receive contract request.
+
+Review
+Contract Administrator will review contract request.
+
+Assign Manager:
+Contract Administrator will asssign the contract Manager to create contract
+
+Approve
+Contract Administrator will approve the contract request.
+
+Role of contract Manager team:
+Contract Manager will receive Contract Request
+
+Approve
+Will approve & create contract workspace
+
+Create Contract Workspace
+Modify or input metadata
+Select template
+Answer question
+
+Prepare Contract
+Author contract
+Legal review 
+  Initiate task
+  legal review
+  Accept or reject
+  Mark complete
+
+Negotiate with supplier
+
+Send contract for negotiation
+  Initiate task
+  Vendor review
+  Accept
+  Mark complete
+
+Finalize contract
+signature
+Publish contract
+
+Amend Contract
+Documents can be amended.
+Amendment/Full  
+Amendment: Complete contract workspace can be changed
+Termination: Expiration date, email notification
+
+
+
+
+Contract lifecycle
+It all starts when you start create a contract request and this will go to contract manager.
+Contract manager will start creating a contract workspace which included with contract documents & main agreement.
+Contract Manager once draft the agreement they will send for review & approval. before send to supplier.
+Once supplier agreed for clause again for final check review will done by legal team or procurement team.
+Contract Manager will publish the contract. Once it is live we can amend if any required.
+
+
+Contract Workspace:
+This is an SAP ARIBA cloud solution which includes all document,task,team, main agrement which all these are inherited from template which we select while creating an workspace.
+They are 3 types of contract workspace.
+Contract Workspace(pROCUREMENT)
+This is widely used by many organizations. This is widely done by Supplier & Buyer.
+Contract(Sales):
+This is similar to forward auction insourcing. This is used in manufacturing sector. Where you sell youtr scrap material to supplier.
+Contract(Internal)
+This isused within organixation for different purposes.
+
+Coming to templates:
+We can create templates based on our needs similar to sourcing.
+We can put conditions on templates when this template should be shown. Like based on commodity,region,department. value.
+
+3 ways to create a contract workspace.
+
+1) You can create contract workspace directly.
+2) You can copy from existing contract Workspace.
+3) You can initiate contract request
+
+Creating an workspace directly after Sourcing event after awarding supplier will expedite the process.
+Because you already have suppliers, required information in event itself.
+All these information is copied to contract.
+After awarding the supplier, you will be populated with 2 field. Create a new contract, Add to existing contract. Based on the  option available you can select.
+
+
+Workspace documents:
+
+These are inherited from the template which we have selected. Also tasks are inherited.
+Documents are associated with tasks.
+
+We have following documents types:
+Assembled documents : These are associated with SAP ARIBA contracts only. These documents must be MS word
+Contract line item documents: This indicates price, quantity of the contract.
+This is created in 2 ways:
+At project creation time, user selects contract workspace and selects template this will create an empty line item documents:
+After completion of sourcing event if they click on contract, whichever items are available in sourcing these are added as CLID.
+Internal documents
+Reference document
+
+tasks in contract workspace:
+Tasks can be created in phases. Which can be seen in organized way of performing tasks.
+
+Team
+You can create an project group who can access, review, negotiate few tasks.
+We can setup conditions as well at this level.
+
+Authoring Phase: This phases includes Editing main agreement, Modifying clauses or sections.
+
+This phase is core part of contracts includes main agreement of the workspace.
+SAP ARIBA Provides ECA which is new drap & drop option easily move documents integrated with Microsoft word to edit all changes in agreement.
+Contracting authoring will enable you todo changes in main agreement. Under main agreement we can have multiple sub-agreement. But both should be using same version of word document.
+Main clauses & sections should be there in main agreement. And supporting documents can be present in sub-agreement.
+Assembled documents have 2 views
+Outline view: This use to change the document structure.
+Microsoft review: Add/delete/move/modify in section or clause.
+Outline view displays type of 
+Template clause: These are inherited while creating the template
+Non-standard: This is used you are editing any standard template then it is considered as this clause
+Adhoc library:is type indicates a clause that was added to the workspace directly from the Clause Library as an additional clause or substitution for an existing clause.
+Adhoc:his type indicates a clause that was uploaded from a Microsoft Word document or added directly to the contract document in Microsoft Word
+
+
+
+
+
+

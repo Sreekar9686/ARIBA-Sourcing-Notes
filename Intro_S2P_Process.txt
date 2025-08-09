@@ -1,0 +1,14 @@
+Up Stream Procurement--Non Catalog items. An item which is not available in catalog. To purchase a non catalog items we need source of supply for product or service. Sourcing---Contract---SLP. We can do 1 time for Non catalog item. and then it flows to Down stream.
+Downstream Procurement---Catalog items. We know source of supply for your product, so directly goto your known supplier or website and start your process or requestion. It involves PR--PO--Invoice. To your known item you can perform this process "N" times.
+
+Summary--If source of supply is known then you go to downstream. If not Upstream.
+
+Upstream and downstream have different database.
+
+
+S2P Process---SLP(Onboard New supplier, Request, Registration, Qualification), Sourcing Project, Qualify,Contract,Contract Compliance, PR, PO, ASN,GR,Invoice, Payment.
+
+We will onboard supplier to our system, they will register themselves, then ANID is provided for them. ANID is mandatory for each supplier. They are millions of suppliers in system, ANID is useful when buyer is ordering from your website, then PO will be sent your Supplier Portal. You can login to your portal and you can start processing order.
+After onboarding supplier, Sourcing Project will be created basically tendering process with list of questionnaire. We will award the supplier then will qualify supplier.
+After this we will sign contract with supplier to fulfill this needs.
+Contract is created in Contract workspace and publish in contract workspace. This data should flow to downstream through contract compliance.

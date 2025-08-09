@@ -1,0 +1,234 @@
+Catalog information
+
+What is catalog?
+Catalogs are text files stored on a company’s website. Catalogs describe the products and services an organization offers and the prices they charge
+
+2 types of catalogs
+Contract catalogs(S2P)
+Items which flow from contract to contract compliance automatically these are called contract catalogs.
+
+Difference b/w P2P & S2P.
+P2P will have no contracts & S2P contract will be there.
+
+When you do sourcing & contract & contract compliance & you do PR against the contract it's consumed and this is called S2P Process.
+when you are loading the items manually in downstream it referred as P2P.
+
+Up-stream & downstream has 2 separate architecture & database as well.
+
+Who is responsible to upload catalog?
+Supplier uploads  catalog on AN. It comer to Buyer network. Lets consider the scenario you have setup custom validation for supplier, & supplier is not aware of it. When supplier uploads catalog on AN, it will check only standard ARIBA fields & it will show successful to supplier. But when it comes ARIBA buyer you will see Validation error you cant proceed further. You think that manually edit the file if you are Super admin role, then will consider as Non-contract items.
+
+static catalogs
+Static catalogs are created in two main formats: CIF (Catalog Interchange Format) or cXML (Commerce Extensible Markup Language) format. These catalogs are stored on Ariba easily searchable & added to cart .
+The data resides in ARIBA. easy to shop.
+
+Disadvantages:
+No Realtime inventory. Supplier management  to keep catalogs current.
+
+Non contract catalogs
+These catalogs are loaded manually in downstream referred as P2P
+Internal catalogs- Pre negotiation happens between supplier & buyer because of buyer is not sure about quantity of goods. Information about price and details of goods are maintained in Ariba database.
+
+Punchout catalogs: Details about price and info about goods are stored in supplier database. if you wish to buy from punchout. The data of the items & content of catalogs is maintained by supplier.
+Basic data resides in ARIBA and main data resides in Supplier website.
+Basic data e.g.: Supplier id, supplier part id, manufacture id
+Main data: Price, commodity code, unit of measure, effective date, expiration date.
+Difference b/w static & Punchout
+
+Punchout enabled is true it is punchout and then Supplier URL is mandatory. and give product item after followed by website name. 
+
+Punchout catalog items are hosted on the supplier’s own website where you can select items for purchase. Once the Punchout session is completed, the selected Punchout catalog items will appear on your requisition as line items. All Punchout catalog item searches are performed on the supplier's website. The items hosted in a Punchout Catalog may be referred to as dynamic items. There are two levels of Punchout catalogs as follows: 
+How do you identify supplier as punchout?
+
+During build phase we need to conduct a training for client data team & supplier.
+Supplier is giving us the data and client data team is responsible for validation of the data. 
+
+1) Restriction of double quote in value field match. " ",
+e.g.: Supplier id:  "4387929", "539729729", "4927"
+Suppler id: This should be AN of supplier. If we give any custom id it will through up error. Even if SM vendor id is given shows error. SM vendor id is limited only till upstream.
+Classification code(Commodity code) : It allows multiple values.
+e.g.: Each product will come under an category or sub-category. We need to map each line item or product or service to commodity code.
+e.g. laptop code:80101600
+If you are purchasing laptop and you search in UI it will take lot of time because there are lot of items for laptop. it will take 5-10 minutes and this leads to performance issue.
+To mitigate this issue define category, sub-category at this level. so no issue persists in future. This is also called as commodity hierarchy.{80101600;1600;16}
+
+Difference b/w static vs punchout
+
+For static data resides at buyer side, no supplier website. Data is maintained by offline supplier.
+For punchout data resides at supplier side and they will have supplier website.
+
+IN CIF(Catalog interchange File) file punchout should be enabled as true.
+
+Restrictions of internal catalog
+
+Supplier ID is mandatory--- Supplier should give ANID
+They should give UNSPSC Standard code. Don't give custom code
+Image file should be given. maximum size is 1mb. resolution is 400*400
+
+Punchout Catalogs.
+
+Redirect to supplier website to purchase, add items comeback to Ariba and click checkout PO will be sent to supplier.
+Restrictions
+Punchout should be enabled as YES.
+Website should be frequently updated.
+Supplier URL is mandatory.
+
+Catalog upload process:
+You obtain supplier catalogs from the SAP Business Network or another source and import them into your SAP Ariba procurement solution. 
+
+You can also allow users to go directly to a supplier’s site to select items, a process called punching out, or Punchout. In this case, you still import some basic catalog information from the supplier. 
+
+You can also create an empty catalog subscription and add catalog items to it manually. 
+Supplier uploads a catalog onto the SAP Business Network
+Buyer subscribes to the catalog via their buyer SAP Business Network account
+
+A scheduled job is run (Ariba Network Full Subscription Synchronization task) which imports the subscribed catalog from the Supplier
+
+This process downloads, imports, and validates the new and updated catalogs to which customers have subscribed. Catalogs without errors are moved to the Verified status. As part of the upload process, there are multiple subscription options for controlling the upload including skipping approval, for stopping before sending to approval, or activating automatically for all subsequent versions.
+
+Punchout process flow
+The user selects a Punchout item in the SAP Ariba Procurement solution catalog. This selection sends a request to the SAP Business Network to establish a connection with the remote catalog.
+
+The SAP Business Network authenticates the buying organization and forwards the request to the supplier’s Punchout site.
+
+The supplier sends back a URL of a webpage on the supplier’s Punchout site designed specifically for the buyer. The procurement system redirects the user to this URL. The remote shopping site appears in the user’s window and the user begins shopping.
+
+After shopping, the user clicks the site’s check out button, which moves the contents of the shopping cart from the supplier site back to SAP Ariba Procurement. 
+
+
+Punchout level 2
+The Catalog interface shows search results like a CIF catalog, then users click a Buy from Supplier button, and punch out of SAP Ariba to the supplier’s site directly to the specific item or category they chose
+
+Custom validation.
+
+This can be done Supplier specific or general in nature.
+
+Importing catalog:
+Catalog subscription: Represents all non-contract items belongs to particular supplier.
+Select supplier
+Empty catalog: We can create this without any catalog items.
+Skip approval: Is always YES. Because this is already validated by client. no need to take approval in system.
+Activate automatically : YES.
+Allow multi-level supplier cif file: NO. Because We can't insert 2 AN ID's in 1 cif file. If it is given it will cause an error. It will give error like. Suppose you have creating subscription for supplier and you have 2 ANID this will fail because you have selected supplier while importing and ARIBA will check that supplier AN ID and supplier ANID in cif file. Items will load belongs to supplier which you have loaded..
+Once you upload file it will status for Pending for buyer, Verified, validation, Activating, Activated.
+
+How to export Catalog cif file?
+
+Download under the Catalog validation rules option under catalog manager.
+Catalog validation: If requirement is few fields in CIF file is  should be mandatory. Go to particular field under catalog validation click on actions>edit supplier rule.
+
+Hierarchy editor: 
+Each product follows category & SUB-CATEGORY. Each product belongs to 1 commodity code.
+This is commodity code related field which you need to load in the system. After loading into the system go to Scheduled task page and run the "HIER" task. After this all hierschy will come to ARIBA.
+
+
+More about Catalog Configuration
+
+Catalog kits: Grouping of catalog items from same supplier or different supplier. All these items are static. E.g.: When an new employee joins we need not to add all line items search in UI. We can make few items required few not required.
+Catalog views: We can customize who can see catalog items based on group.
+Catalog Validation: We can setup validation based on supplier rule.
+Catalog hierarchy: This is used to define catalog items in cif file.
+Index rebuild: When you import catalog, if it goes into infinite loop, we can come here and run this job run it will take time for 30 minutes to complete tis task.
+
+
+Approval process in downstream.
+
+
+We created approval process for Requisition that is transaction document. 
+What is transaction document?
+Anything apart from PO. PO is created from PR. You directly can't create PO.
+Manage>Approval Process. Select approvable type as Transactional document. Select Approval process type as Requisition. At a time Only 1 of approval Process can be active in system.
+Create: In implementation project we need to create new approval.
+Copy: In support you can copy.
+Collaboration mode in approval process: PR can seen by all suppliers on Ariba AN. Sourcing, contract,
+In UI:
+Approval Process flow diagram: This is customizable we can create both serial & parallel flow in this. which is not possible in upstream.
+We have created Conditional Approval. Which can be done as OBO(on behalf of).If requester is not equal to preparer
+Two concepts here that is Preparer & Requester:
+If suppose I am travelling can't access the system, i will tell my colleague to create requisition. In this scenario I will become as requester, my colleague is preparer.
+Approval flow you  can select group, who can approve this request. but before approved by them, you can select requester in drop-down so that if i can approve system will understand that i requested the products.
+Nonconditional.
+We can create dynamic approval using approval lookup table. Define approval lookup scenario in UI as field are case sensitive using excel.
+
+If client gives multiple scenarios to create approval process. Initiate a discussion with them and follow the scenario stated below.
+
+Company code:IN01 Purch.org:INDLO1 Purch.grp:INDLP01 Approver=Shekar
+Company code:IN01 Purch.org:INKAO1 Purch.grp:INKAP01 Approver=Sri
+Company code:IN01 Purch.org:INAPO1 Purch.grp:INAPP01 Approver=IRIS
+Company code:IN01 Purch.org:INMPO1 Purch.grp:INMPP01 Approver=Siri
+
+Level 1 is always OBO because legal team & other team is should be aware. In this if user is trying to purchase from specified location, that location approval will be triggered.
+Level 2 is Supervisor which is optional
+Level 3 is dynamic based on your requirement using approval lookup table.
+
+
+
+P2P Process:
+
+Catalog: When we click on  create requisition it will route us to catalog screen. Because it's more efficient. Non-catalog requires sourcing, contract, contract compliance.
+
+contract catalog items: Release order. Whenever the Purchase order is created against the contract created items it's called release order.
+Non-contract catalog items: Purchase order
+
+
+PR>PO>PO Confirmation>ASN>GR>ERS(Evaluated receipt settlement>AUTOINVOICE(AB)>IR>PAYEMNT.
+
+Invoice will happen in AB. Based on approved or accepted qty at GR level automatically invoice will be created. before that GR will go to approval process once it is approved invoice will be created.
+
+Status: Draft>Submitted>inapproval>approved>Ordering>ordered(status of PR will be in ordered only if PO is sent to Ariba network, replicated to ERP. Either 1 of them fails it will be in Ordering status. After this GR will be done. Suppose you have ordered  qty and you received all 5. out of them 2 are damaged. In receipts they are 2 fields that is accepted & rejected. Enter 3 as accepted & 2 are damaged. As next step supplier views the GR and they can send invoice only for accepted qty not for all qty ordered.
+
+PR>PO>PO Confirmation>ASN>GR>ERS(Evaluated receipt settlement>AUTOINVOICE(AB)>IR>PAYEMNT.
+
+Can we create PR in S4?
+
+No, because you have setup all the catalog views, validation,kits,hierachry in Ariba. These results cant be transmitted to S4.
+Can PR be sent to ERP?
+No.
+Actual integration with s4 starts from PO
+PO should be replicated to ERP. This should be in display mode or editable mode?
+It always in display mode. Integration itself means that sync b/w 2 systems. Source & destination system. If you want to change PO after sometime go to PR and edit so that another version of PO gets created and this will be sent to destination system that is ERP. 
+
+GR (AB, Display in ERP)
+
+Since P2P Process is there from 2010, they need to match 3-way match of invoice. Whereas in S2P, whenever there is an webservice call GR information is automatically transmitted  to ERP.
+
+Invoice
+is this should be replicated to ERP. Yes only in display mode
+
+IR(ERP, Status update to AB)
+
+This can be done in both AB & ERP. IR customer can have custom specific rules. We don't do in Ariba buyer they have todo as an enhancement request. Most of them don't prefer this method.
+
+Payment (ERP, Status update to AB)
+
+Account details are not available they are coming from ERP. So payment happens in ERP, Status will be posted back to ARIBA.
+
+
+
+Supplier can login to their Ariba network and they can see PO & confirm the order, they can initiate ASN.
+
+Direct procurement: Products which you buy for manufacturing for your goods. ASN &PO Confirmation is mandatory
+Indirect Procurement: Products which you don't buy for manufacturing for your goods it will not impact your business.
+PO is sent to Ariba network, where supplier views PO and confirms the order.
+Based on receiving quantity invoicing is done automatically in ARIBA. It can be sent to supplier can't edit anything.
+
+
+
+Add 2 items to PR either from catalog or non-catalog
+If you add 2 items from same supplier 1PO will be created or if you add 1 contract item another is non-contract same 2 PO's are created.
+
+S2P or Contract catalog items: Release order (If you create for items within PR it will record how many PR's has been created against this contract and same will be recorded in contract compliance orders page.
+P2P or Non-catalog items: Purchase order
+
+P2P:PR(AB)>PO(AB, Replicated to ERP, display only) GR(AB), Invoice(AB, Display only in ERP), IR(ERP, Status update to AB),Payment(ERP, Status update in AB).
+S2P:PR(AB)>RO(AB, Replicated to ERP, display only) GR(AB), Invoice(AB), IR(ERP, Status update to AB),Payment(ERP, Status update in AB).
+
+
+In IR client can have custom formulas
+It always display only in ERP. Integration is just sync between source & destination system.
+
+
+
+The spot buy capability lets users search for and buy non-sourced goods through guided buying. Users must belong to the Spot Buy User group to see the spot buy results.
+ Users might need to buy items that aren't available from your organization's supplier customer catalogs. They can use the spot buy catalog instead of creating non-catalog items, and purchasing agents won't need to source and order those items.
+
